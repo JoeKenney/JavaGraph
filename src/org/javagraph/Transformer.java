@@ -15,9 +15,6 @@ import org.objectweb.asm.Opcodes;
 
 public class Transformer implements ClassFileTransformer {
 
-	public Transformer() {
-	}
-
 	@Override
 	public
 	byte[] transform(ClassLoader loader,
@@ -26,19 +23,14 @@ public class Transformer implements ClassFileTransformer {
 			ProtectionDomain protectionDomain,
 			byte[] classfileBuffer) {
 
-		//Do not attempt to transform the following classes.
+	
 		if ( ! className.startsWith("org/javagraph")) {
 			return classfileBuffer;
 		}
-		System.out.println("Transforming class: "+className);
-
 		ClassNode cn = new ClassNode();
 		ClassReader cr = new ClassReader(classfileBuffer);
 		cr.accept(cn, 0);
 		for(MethodNode mn: cn.methods) {
-			//Static method calls
-
-			
 			InsnList il = mn.instructions;
 			Vector<AbstractInsnNode> monitorInstructions = new Vector<>();
 			for(AbstractInsnNode insn: il.toArray()) {
@@ -58,7 +50,6 @@ public class Transformer implements ClassFileTransformer {
 					InsnList premonitorexit = new InsnList();			
 					premonitorexit.add(new MethodInsnNode(Opcodes.INVOKESTATIC, "org/javagraph/hooks/MonitorHooks", "premonitorexit", "(Ljava/lang/Object;)Ljava/lang/Object;"));
 					il.insertBefore(insn,  premonitorexit);
-					//System.out.println("MonitorExit");
 					break;
 				}
 			}

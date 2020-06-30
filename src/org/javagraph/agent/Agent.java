@@ -3,7 +3,6 @@ package org.javagraph.agent;
 import java.lang.instrument.Instrumentation;
 
 import org.javagraph.Transformer;
-import org.javagraph.graph.GraphDB;
 
 public class Agent {
 
@@ -12,8 +11,5 @@ public class Agent {
 
 	}
 
-	public Agent() {
-		// TODO Auto-generated constructor stub
-	}
 
 }
