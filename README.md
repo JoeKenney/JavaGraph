@@ -1,10 +1,10 @@
-#Introduction
+# Introduction
 
 This is an example project to explore the possibility of tracking Java synchronization structures at runtime. This project uses the Java instrumentation classes (https://docs.oracle.com/en/java/javase/14/docs/api/java.instrument/java/lang/instrument/package-summary.html).
 
 
 
-#Running the tests
+# Running the tests
 
 Build the package and download dependencies
 
